@@ -1,0 +1,52 @@
+# Namespace for MariaDB
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: mariadb
+
+---
+
+# Deployment for MariaDB
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mariadb
+  namespace: mariadb
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mariadb
+  template:
+    metadata:
+      labels:
+        app: mariadb
+    spec:
+      containers:
+        - name: mariadb
+          image: mariadb:10.6.4-focal
+          ports:
+            - containerPort: 3306
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mariadb-secret
+                  key: mysql-root-password
+            - name: MYSQL_DATABASE
+              valueFrom:
+                configMapKeyRef:
+                  name: mariadb-config
+                  key: mysql-database
+            - name: MYSQL_USER
+              valueFrom:
+                configMapKeyRef:
+                  name: mariadb-config
+                  key: mysql-user
+            - name: MYSQL_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mariadb-secret
+                  key: mysql-password
+
+

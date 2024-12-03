@@ -1,0 +1,10 @@
+
+# ConfigMap for MariaDB configuration
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mariadb-config
+  namespace: {{ .Values.namespace }}
+data:
+  mysql_database: {{ .Values.config.mysql_database }}
+  mysql_user: {{ .Values.config.mysql_user }}

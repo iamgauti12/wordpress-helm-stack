@@ -1,0 +1,15 @@
+namespace: mariadb
+secret:
+  mysql_root_password: d29yZHByZXNzDQo=   # Replace with base64-encoded root password
+  mysql_password: d29yZHByZXNzDQo=      # Replace with base64-encoded user password
+config:
+  mysql_database: wordpress
+  mysql_user: wordpress
+replicas: 1
+image:
+  repository: mariadb
+  tag: 10.6.4-focal
+service:
+  port: 3306
+  type: ClusterIP
+

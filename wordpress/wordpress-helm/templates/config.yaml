@@ -1,0 +1,11 @@
+
+# ConfigMap for WordPress configuration
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: wordpress-config
+  namespace: {{ .Values.namespace }}
+data:
+  db_host: {{ .Values.config.db_host }}
+  db_user: {{ .Values.config.db_user }}
+  db_name: {{ .Values.config.db_name }}

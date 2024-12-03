@@ -1,0 +1,7 @@
+# sops.yaml
+creation_rules:
+  - gcp_kms: projects/deploy-project-435500/locations/us-east1/keyRings/my-keyring/cryptoKeys/mykey
+    # Specify any file patterns you want to auto-encrypt
+    path_regex: '.*\.yml$'
+    encrypted_regex: '^(data)$'
+

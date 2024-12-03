@@ -1,0 +1,22 @@
+# Namespace for WordPress
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: wordpress
+
+---
+
+# Service to expose WordPress as LoadBalancer
+apiVersion: v1
+kind: Service
+metadata:
+  name: wordpress
+  namespace: wordpress
+spec:
+  type: ClusterIP
+  selector:
+    app: wordpress
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80

@@ -1,0 +1,14 @@
+namespace: wordpress
+secret:
+  db_password: d29yZHByZXNzDQo=  # Replace with base64-encoded password
+config:
+  db_host: mariadb.mariadb.svc.cluster.local  # Use MariaDB service's fully qualified domain name (FQDN)
+  db_user: wordpress
+  db_name: wordpress
+image:
+  repository: wordpress
+  tag: latest
+replicas: 1
+service:
+  port: 80
+  type: LoadBalancer

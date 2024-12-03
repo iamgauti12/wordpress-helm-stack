@@ -1,0 +1,22 @@
+# Namespace for MariaDB
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: mariadb
+
+---
+
+# Service to expose MariaDB internally
+apiVersion: v1
+kind: Service
+metadata:
+  name: mariadb
+  namespace: mariadb
+spec:
+  type: ClusterIP
+  selector:
+    app: mariadb
+  ports:
+    - protocol: TCP
+      port: 3306
+      targetPort: 3306
